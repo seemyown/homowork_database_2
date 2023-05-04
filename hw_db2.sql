@@ -58,4 +58,9 @@ CREATE TABLE IF NOT EXISTS collection_track(
 	track_id INTEGER REFERENCES tracks(track_id)
 );
 
+CREATE TABLE IF NOT EXISTS albums_tracks(
+	id SERIAL PRIMARY KEY,
+	album_id INTEGER REFERENCES albums(album_id),
+	track_id INTEGER REFERENCES tracks(track_id)
+);
  
