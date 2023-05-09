@@ -1,8 +1,8 @@
--- Database: homework_2
+-- Database: music_db
 
--- DROP DATABASE IF EXISTS homework_2;
+-- DROP DATABASE IF EXISTS music_db;
 
--- CREATE DATABASE homework_2
+-- CREATE DATABASE music_db
 --     WITH
 --     OWNER = postgres
 --     ENCODING = 'UTF8'
@@ -14,24 +14,25 @@
 	
 CREATE TABLE IF NOT EXISTS genres(
 	genre_id SERIAL PRIMARY KEY,
-	name_of_genre VARCHAR(20) NOT NULL
+	name_of_genre VARCHAR(20) UNIQUE NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS artists(
 	artist_id SERIAL PRIMARY KEY,
-	alias VARCHAR(30)
+	alias VARCHAR(30) UNIQUE NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS albums(
 	album_id SERIAL PRIMARY KEY,
-	name_of_album VARCHAR(30) NOT NULL,
+	name_of_album VARCHAR(30) UNIQUE NOT NULL,
 	release_year DATE NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS tracks(
 	track_id SERIAL PRIMARY KEY,
 	name_of_track VARCHAR(30) NOT NULL,
-	duration INTEGER NOT NULL
+	duration INTEGER NOT NULL,
+	album_id INTEGER NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS collections(
@@ -58,9 +59,5 @@ CREATE TABLE IF NOT EXISTS collection_track(
 	track_id INTEGER REFERENCES tracks(track_id)
 );
 
-CREATE TABLE IF NOT EXISTS albums_tracks(
-	id SERIAL PRIMARY KEY,
-	album_id INTEGER REFERENCES albums(album_id),
-	track_id INTEGER REFERENCES tracks(track_id)
-);
+
  
